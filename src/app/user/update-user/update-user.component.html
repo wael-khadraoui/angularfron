@@ -1,0 +1,64 @@
+<div class="container mt-4" *ngIf="!loading; else loadingTpl">
+  <h2>Modifier l’utilisateur</h2>
+
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div class="form-group">
+      <label>Nom :</label>
+      <input
+        type="text"
+        class="form-control"
+        name="nom"
+        [(ngModel)]="user.nom"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Prénom :</label>
+      <input
+        type="text"
+        class="form-control"
+        name="prenom"
+        [(ngModel)]="user.prenom"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Email :</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        [(ngModel)]="user.email"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Âge :</label>
+      <input
+        type="number"
+        class="form-control"
+        name="age"
+        [(ngModel)]="user.age"
+        required
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn btn-success mt-3"
+      [disabled]="!userForm.form.valid || submitInProgress"
+    >
+      Mettre à jour
+    </button>
+    <a routerLink="/users" class="btn btn-secondary mt-3 ms-2">Annuler</a>
+  </form>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="d-flex justify-content-center p-5">
+    <div class="spinner-border" role="status"></div>
+  </div>
+</ng-template>
